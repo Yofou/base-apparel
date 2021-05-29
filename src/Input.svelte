@@ -12,33 +12,27 @@
 
         isFalseEmail = !IsEmail(input)
     }
-
-    const onEnter = (event) => {
-        if (event.key != 'Enter') return
-        onSubmit()
-    }
 </script>
 
-<div class:bad={isFalseEmail}>
+<form class:bad={isFalseEmail} on:submit|preventDefault={onSubmit}>
     <input 
         bind:value={input}
-        on:keydown={onEnter}
         type="text" 
         placeholder="Email Address"
     >
-    <button on:click={onSubmit}>
+    <button>
         <img src="./images/icon-arrow.svg" alt="arrow">
     </button>
 
     <img src="./images/icon-error.svg" alt="error">
-</div>
+</form>
 
 {#if isFalseEmail}
     <p>Please provide a valid email</p>
 {/if}
 
 <style>
-    div {
+    form {
         position: relative;
         width: 435px;
         height: 55px;
@@ -104,7 +98,7 @@
         font-family: var(--family);
     }
 
-    div > img {
+    form > img {
         opacity: 0;
         position: absolute;
         top: 50%;
@@ -115,15 +109,11 @@
 
     .bad > img { opacity: 1; }
 
-    @media (max-width: 675px) {
-        div {
-            place-self: center;
+    @media (max-width: 1300px) {
+        form {
             width: 80%;
+            min-width: 380px;
             height: 45px;
-        }
-
-        input, input::placeholder {
-            font-size: 0.9rem;
         }
 
         button {
@@ -132,14 +122,29 @@
             box-shadow: 0 2px 5px var(--red-300);
         }
 
+        input, input::placeholder {
+            font-size: 0.9rem;
+        }
+
         button:focus, button:hover { box-shadow: 0 2px 10px var(--red-300); }
 
-        div > img {
+        form > img {
             right: calc(30%);
         }
 
         p {
             font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 1100px) {
+        form {
+            place-self: center;
+            width: 345px;
+            min-width: 345px;
+        }
+
+        p {
             margin-left: 60px;
         }
     }

@@ -5,16 +5,16 @@
 <main>
 	<section>
 
-		<img class="logo" src="./images/logo.svg" alt="logo">
+		<img class="logo" src="./images/logo.svg" alt="pink ring, base apparel logo">
 
-		<img class="hero" id="mobile" src="./images/hero-mobile.jpg" alt="hero">
+		<img class="hero" id="mobile" src="./images/hero-mobile.jpg" alt="model posing in garden">
 
 		<h1>
 			<span>we're</span> coming soon
 		</h1>
 
 		<p>
-			Hello fello shoppers! We're currently building our new
+			Hello fellow shoppers! We're currently building our new
 			fashion store. Add your email below to stay up-to-date with
 			announcements and our launch deals.
 		</p>
@@ -24,7 +24,7 @@
 		
 	</section>
 
-	<img class="hero" id="desktop" src="./images/hero-desktop.jpg" alt="hero">
+	<img class="hero" id="desktop" src="./images/hero-desktop.jpg" alt="model posing in garden">
 </main>
 
 <style>
@@ -49,15 +49,19 @@
 		width: 100%;
 		height: 100%;
 		display: grid;
-		grid-template: 1fr / 1fr 610px;
-		grid-template: "section hero";
 		overflow: hidden;
+		grid-template: 1fr / 1fr min-content;
+		grid-template: "section hero";
 	}
 
 	section {
 		background-image: url(../images/bg-pattern-desktop.svg);
 		background-size: cover;
 		padding: 65px 165px;
+
+		overflow: hidden;
+		overflow-y: scroll;
+		scrollbar-width: none;
 
 		display: grid;
 		grid-area: section;
@@ -67,11 +71,14 @@
 							"header"
 							"content"
 							"contact";
+
+		transition: padding 0.1s ease-in-out;
 	}
 
 	.logo {
 		grid-area: logo;
 		margin-bottom: 135px;
+		transition: margin-bottom 0.1s ease-in-out;
 	}
 
 	section > h1 {
@@ -105,20 +112,44 @@
 		grid-area: hero;
 		object-fit: cover;
 		object-position: center;
+		width: min-content;
 	}
 
 	#desktop.hero {
-		width: min-content;
 		height: 100%;
 	}
 	
 	#mobile.hero {
 		display: none;
-		width: min-content;
 		height: min-content;
 	}
 	
-	@media (max-width: 675px) {
+	@media (max-width: 1300px) {
+
+		.logo {
+			scale: 0.9;
+			margin-bottom: 90px;
+		}
+
+		section {
+			padding: 65px 82px;
+		}
+
+		section > p {
+			font-size: 0.85rem;
+		}
+
+		section > h1 {
+			font-size: 3.5rem;
+		}
+
+		main {
+			grid-template: 1fr / auto min-content;
+			grid-template-areas: "section hero";
+		}
+	}
+
+	@media (max-width: 1100px) {
 		main {
 			grid-template: 1fr / 1fr;
 			grid-template-areas: "section";
